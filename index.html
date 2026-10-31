@@ -1,0 +1,617 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Pradeep Kumar Muduli!</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Plus+Jakarta+Sans:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;0,800;1,400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            300: '#FDE047',
+                            400: '#FACC15',
+                            500: '#EAB308',
+                            600: '#CA8A04',
+                            700: '#A16207',
+                        },
+                        night: {
+                            900: '#0B091A',
+                            800: '#131129',
+                            700: '#1D1A3B',
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        cinzel: ['Cinzel', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Glowing & Glassmorphism Effects */
+        body {
+            background-color: #0B091A;
+            color: #F3F4F6;
+            overflow-x: hidden;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .glass-gold {
+            background: linear-gradient(135deg, rgba(250, 204, 21, 0.08), rgba(202, 138, 4, 0.02));
+            border: 1px solid rgba(250, 204, 21, 0.2);
+            box-shadow: 0 10px 30px rgba(250, 204, 21, 0.05);
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF5C0 0%, #FACC15 50%, #CA8A04 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .gold-glow {
+            box-shadow: 0 0 25px rgba(250, 204, 21, 0.3);
+        }
+
+        /* Ambient Glow Spheres */
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(90px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* SVG & CSS Cake Animations */
+        .flame {
+            transform-origin: center bottom;
+            animation: flicker 1.2s infinite ease-in-out alternate;
+        }
+
+        @keyframes flicker {
+            0% { transform: scale(1) rotate(-2deg); opacity: 0.95; }
+            20% { transform: scale(1.1) rotate(2deg); opacity: 1; }
+            40% { transform: scale(0.95) rotate(-1deg); opacity: 0.85; }
+            60% { transform: scale(1.05) rotate(3deg); opacity: 1; }
+            80% { transform: scale(0.98) rotate(-2deg); opacity: 0.9; }
+            100% { transform: scale(1.02) rotate(1deg); opacity: 0.95; }
+        }
+
+        .flame-out {
+            display: none !important;
+        }
+
+        .smoke {
+            opacity: 0;
+            animation: smokeRise 2s forwards ease-out;
+        }
+
+        @keyframes smokeRise {
+            0% { opacity: 0.8; transform: translateY(0) scale(0.8); }
+            100% { opacity: 0; transform: translateY(-40px) scale(2); }
+        }
+
+        /* Floating Animation */
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0B091A;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1D1A3B;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #CA8A04;
+        }
+    </style>
+</head>
+<body class="min-h-screen relative selection:bg-gold-500 selection:text-night-900">
+
+    <!-- Background Canvas for Interactive Particle Sparks & Confetti -->
+    <canvas id="particleCanvas" class="fixed inset-0 pointer-events-none z-10"></canvas>
+
+    <!-- Background Ambient Glows -->
+    <div class="glow-orb w-96 h-96 bg-purple-900/30 top-10 left-10"></div>
+    <div class="glow-orb w-[30rem] h-[30rem] bg-amber-600/15 bottom-20 right-10"></div>
+    <div class="glow-orb w-80 h-80 bg-indigo-900/30 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+
+    <!-- Main Container -->
+    <div class="relative z-20 max-w-5xl mx-auto px-4 py-8 md:py-16">
+
+        <!-- Top Controls Header -->
+        <header class="flex justify-between items-center mb-12">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400">
+                    <i class="fa-solid fa-crown text-sm"></i>
+                </div>
+                <span class="font-cinzel text-xs tracking-[0.2em] text-gray-400 uppercase">Tribute & Celebration</span>
+            </div>
+
+            <button id="soundToggleBtn" onclick="toggleAudio()" class="glass-card px-4 py-2 rounded-full text-xs font-semibold tracking-wider text-gray-300 hover:text-gold-400 hover:border-gold-500/40 transition-all flex items-center gap-2">
+                <i id="soundIcon" class="fa-solid fa-volume-xmark"></i>
+                <span id="soundText">Music Off</span>
+            </button>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="text-center mb-16 relative">
+            <div class="inline-block px-4 py-1.5 rounded-full glass-gold text-gold-300 text-xs font-semibold tracking-widest uppercase mb-6 border border-gold-500/30">
+                ✨ Honoring A True Mentor & Father Figure ✨
+            </div>
+            
+            <h1 class="font-cinzel text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-4 leading-tight">
+                Happy Birthday <br/>
+                <span class="gold-gradient-text">Pradeep Kumar Muduli</span>
+            </h1>
+
+            <p class="font-serif italic text-lg sm:text-2xl text-gray-300 max-w-2xl mx-auto font-light leading-relaxed">
+                "To the pillar of my strength, the sculptor of my dreams, and the one who nurtured my life with unconditional love."
+            </p>
+        </section>
+
+        <!-- Interactive Cake & Candle Section -->
+        <section class="glass-card rounded-3xl p-6 sm:p-12 mb-16 text-center relative overflow-hidden">
+            <div class="absolute top-0 right-0 p-8 opacity-10 pointer-events-none text-gold-400">
+                <i class="fa-solid fa-cake-candles text-9xl"></i>
+            </div>
+
+            <h2 class="font-cinzel text-xl sm:text-2xl text-gold-300 tracking-wider mb-2">Make A Wish & Blow The Candle</h2>
+            <p class="text-xs sm:text-sm text-gray-400 mb-8">Click the flame or tap the button to blow out the candle and launch the celebration!</p>
+
+            <!-- SVG Animated Cake -->
+            <div class="relative w-64 h-64 mx-auto my-4 cursor-pointer" onclick="blowCandle()">
+                <svg viewBox="0 0 300 300" class="w-full h-full drop-shadow-[0_15px_25px_rgba(0,0,0,0.6)]">
+                    <defs>
+                        <!-- Cake Gradients -->
+                        <linearGradient id="cakeBase" x1="0" y1="0" x2="0" y2="1">
+                            <stop offset="0%" stop-color="#2D1A45"/>
+                            <stop offset="100%" stop-color="#180E29"/>
+                        </linearGradient>
+                        <linearGradient id="cakeCream" x1="0" y1="0" x2="1" y2="0">
+                            <stop offset="0%" stop-color="#FACC15"/>
+                            <stop offset="50%" stop-color="#FFE885"/>
+                            <stop offset="100%" stop-color="#CA8A04"/>
+                        </linearGradient>
+                        <linearGradient id="candleBody" x1="0" y1="0" x2="1" y2="0">
+                            <stop offset="0%" stop-color="#E11D48"/>
+                            <stop offset="100%" stop-color="#9F1239"/>
+                        </linearGradient>
+                        <!-- Glow Filter -->
+                        <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur stdDeviation="6" result="blur" />
+                            <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                        </filter>
+                    </defs>
+
+                    <!-- Cake Stand -->
+                    <ellipse cx="150" cy="250" rx="110" ry="18" fill="#334155" opacity="0.8"/>
+                    <path d="M 90 250 Q 150 270 210 250 L 190 275 Q 150 285 110 275 Z" fill="#1E293B"/>
+
+                    <!-- Bottom Tier -->
+                    <rect x="65" y="170" width="170" height="70" rx="10" fill="url(#cakeBase)" stroke="#4C1D95" stroke-width="1.5"/>
+                    <path d="M 65 185 Q 95 200 120 185 Q 150 200 180 185 Q 210 200 235 185 L 235 170 L 65 170 Z" fill="url(#cakeCream)"/>
+
+                    <!-- Middle Tier Decorative Ribbon -->
+                    <rect x="65" y="215" width="170" height="8" fill="#CA8A04" opacity="0.7"/>
+
+                    <!-- Top Tier -->
+                    <rect x="90" y="115" width="120" height="60" rx="8" fill="url(#cakeBase)" stroke="#4C1D95" stroke-width="1.5"/>
+                    <path d="M 90 128 Q 120 140 150 128 Q 180 140 210 128 L 210 115 L 90 115 Z" fill="url(#cakeCream)"/>
+
+                    <!-- Candle -->
+                    <rect x="144" y="65" width="12" height="50" rx="3" fill="url(#candleBody)"/>
+                    <!-- Candle Stripe -->
+                    <path d="M 144 75 L 156 80 M 144 90 L 156 95 M 144 105 L 156 110" stroke="#FFF" stroke-width="2" opacity="0.4"/>
+                    <!-- Wick -->
+                    <line x1="150" y1="65" x2="150" y2="55" stroke="#475569" stroke-width="2"/>
+
+                    <!-- Flame Outer Glow -->
+                    <g id="flameGroup">
+                        <circle cx="150" cy="45" r="18" fill="#FACC15" opacity="0.25" filter="url(#glow)"/>
+                        <!-- Candle Flame -->
+                        <path class="flame" d="M 150 30 Q 160 43 150 55 Q 140 43 150 30 Z" fill="#F97316" filter="url(#glow)"/>
+                        <path class="flame" d="M 150 34 Q 156 43 150 53 Q 144 43 150 34 Z" fill="#FACC15"/>
+                        <path class="flame" d="M 150 40 Q 153 45 150 50 Q 147 45 150 40 Z" fill="#FFFFFF"/>
+                    </g>
+
+                    <!-- Smoke SVG Placeholder (Hidden initially) -->
+                    <g id="smokeGroup" class="hidden">
+                        <path class="smoke" d="M 150 50 Q 145 40 152 30 Q 158 20 150 10" stroke="#94A3B8" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    </g>
+                </svg>
+            </div>
+
+            <!-- Blow Button -->
+            <div class="mt-6">
+                <button id="blowBtn" onclick="blowCandle()" class="px-8 py-3 rounded-full bg-gradient-to-r from-gold-500 to-amber-600 text-night-900 font-bold text-sm tracking-wider uppercase shadow-lg hover:shadow-gold-500/20 hover:scale-105 active:scale-95 transition-all">
+                    <i class="fa-solid fa-wind mr-2"></i> Blow Candle
+                </button>
+            </div>
+        </section>
+
+        <!-- Poems & Emotional Tribute Cards Grid -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+            
+            <!-- Tribute Poem 1 -->
+            <div class="glass-card rounded-3xl p-8 relative flex flex-col justify-between group hover:border-gold-500/40 transition-all duration-500">
+                <div class="absolute top-6 right-6 text-gold-500/20 group-hover:text-gold-400/40 transition-colors">
+                    <i class="fa-solid fa-quote-right text-4xl"></i>
+                </div>
+                <div>
+                    <span class="text-xs font-cinzel text-gold-400 tracking-widest uppercase">Guided By Greatness</span>
+                    <h3 class="font-serif text-2xl text-gray-100 font-bold mt-2 mb-6">A Father's Heart, A Mentor's Hand</h3>
+                    <div class="space-y-4 font-serif text-gray-300 italic text-base leading-relaxed">
+                        <p>"More than an uncle, you became my light,</p>
+                        <p>Guiding my footsteps through the darkest night.</p>
+                        <p>With selfless care, you helped me stand and grow,</p>
+                        <p>Teaching me all the wisdom I now know."</p>
+                    </div>
+                </div>
+                <div class="mt-8 pt-4 border-t border-white/5 flex items-center justify-between text-xs text-gray-400">
+                    <span>With eternal respect</span>
+                    <i class="fa-solid fa-heart text-rose-500"></i>
+                </div>
+            </div>
+
+            <!-- Tribute Poem 2 -->
+            <div class="glass-card rounded-3xl p-8 relative flex flex-col justify-between group hover:border-gold-500/40 transition-all duration-500">
+                <div class="absolute top-6 right-6 text-gold-500/20 group-hover:text-gold-400/40 transition-colors">
+                    <i class="fa-solid fa-award text-4xl"></i>
+                </div>
+                <div>
+                    <span class="text-xs font-cinzel text-gold-400 tracking-widest uppercase">Inspiration & Integrity</span>
+                    <h3 class="font-serif text-2xl text-gray-100 font-bold mt-2 mb-6">The Beacon of My Life</h3>
+                    <div class="space-y-4 font-serif text-gray-300 italic text-base leading-relaxed">
+                        <p>"For every lesson taught, for sacrifices made,</p>
+                        <p>Your gentle strength will never fade.</p>
+                        <p>To the man who gave his all to build my dream,</p>
+                        <p>You are the greatest hero I have ever seen."</p>
+                    </div>
+                </div>
+                <div class="mt-8 pt-4 border-t border-white/5 flex items-center justify-between text-xs text-gray-400">
+                    <span>Always Inspired By You</span>
+                    <i class="fa-solid fa-star text-gold-400"></i>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Pillars of Gratitude Section -->
+        <section class="glass-card rounded-3xl p-8 sm:p-12 mb-16">
+            <div class="text-center max-w-xl mx-auto mb-10">
+                <h2 class="font-cinzel text-2xl sm:text-3xl text-gray-100 font-bold mb-3">Why You Mean The World To Me</h2>
+                <div class="w-16 h-1 bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto"></div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="glass-gold rounded-2xl p-6 text-center hover:scale-105 transition-transform duration-300">
+                    <div class="w-12 h-12 rounded-full bg-gold-500/20 flex items-center justify-center mx-auto mb-4 text-gold-400 text-xl">
+                        <i class="fa-solid fa-hands-holding-child"></i>
+                    </div>
+                    <h4 class="font-cinzel text-lg text-gold-300 font-bold mb-2">Selfless Care</h4>
+                    <p class="text-xs text-gray-300 leading-relaxed">Raised me with unconditional devotion, giving me safety, love, and a strong foundation.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-gold rounded-2xl p-6 text-center hover:scale-105 transition-transform duration-300">
+                    <div class="w-12 h-12 rounded-full bg-gold-500/20 flex items-center justify-center mx-auto mb-4 text-gold-400 text-xl">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <h4 class="font-cinzel text-lg text-gold-300 font-bold mb-2">Education & Wisdom</h4>
+                    <p class="text-xs text-gray-300 leading-relaxed">Prioritized my schooling and learning, empowering me to stand on my own feet today.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-gold rounded-2xl p-6 text-center hover:scale-105 transition-transform duration-300">
+                    <div class="w-12 h-12 rounded-full bg-gold-500/20 flex items-center justify-center mx-auto mb-4 text-gold-400 text-xl">
+                        <i class="fa-solid fa-compass"></i>
+                    </div>
+                    <h4 class="font-cinzel text-lg text-gold-300 font-bold mb-2">My True Inspiration</h4>
+                    <p class="text-xs text-gray-300 leading-relaxed">Your integrity, kindness, and strength are the guiding lights I strive to follow every single day.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Wishes Generator Box -->
+        <section class="glass-card rounded-3xl p-8 text-center max-w-3xl mx-auto mb-16 relative">
+            <h3 class="font-cinzel text-xl text-gold-300 mb-4">Click For A Golden Wish</h3>
+            <p id="wishText" class="font-serif italic text-lg sm:text-xl text-gray-200 mb-8 min-h-[60px] flex items-center justify-center px-4">
+                "May your year ahead be blessed with pristine health, abundant happiness, and total peace of mind!"
+            </p>
+            <button onclick="generateWish()" class="px-6 py-2.5 rounded-full border border-gold-500/40 text-gold-300 hover:bg-gold-500/10 text-xs font-semibold tracking-wider uppercase transition-all">
+                <i class="fa-solid fa-wand-magic-sparkles mr-2"></i> Reveal Another Wish
+            </button>
+        </section>
+
+        <!-- Footer / Signature -->
+        <footer class="text-center pt-8 border-t border-white/5 text-gray-500 text-xs leading-relaxed">
+            <p class="font-cinzel text-gold-400 text-sm font-semibold mb-1">PRADEEP KUMAR MUDULI</p>
+            <p>Designed with deep respect, gratitude & love on your Special Day.</p>
+            <p class="mt-4 text-[10px] text-gray-600">Hosted seamlessly on GitHub Pages</p>
+        </footer>
+
+    </div>
+
+    <!-- JavaScript Logic & Sound Engine -->
+    <script>
+        /* ----------------------------------------------------
+         * Interactive Candle & Celebration Logic
+         * ---------------------------------------------------- */
+        let candleBlown = false;
+        let isAudioPlaying = false;
+        let audioContext = null;
+
+        function blowCandle() {
+            if (candleBlown) {
+                // Re-trigger celebration particles even if already blown
+                triggerCelebrationParticles();
+                return;
+            }
+
+            candleBlown = true;
+            
+            // Hide flame, show smoke
+            const flameGroup = document.getElementById('flameGroup');
+            const smokeGroup = document.getElementById('smokeGroup');
+            const blowBtn = document.getElementById('blowBtn');
+
+            if (flameGroup) flameGroup.classList.add('flame-out');
+            if (smokeGroup) smokeGroup.classList.remove('hidden');
+            
+            blowBtn.innerHTML = '<i class="fa-solid fa-circle-check mr-2"></i> Wish Sent To The Stars!';
+            blowBtn.classList.remove('from-gold-500', 'to-amber-600');
+            blowBtn.classList.add('from-emerald-500', 'to-teal-600', 'text-white');
+
+            // Play celebratory chime sound
+            playChimeSound();
+
+            // Trigger burst of gold fireworks & confetti
+            triggerCelebrationParticles();
+
+            // Auto-start ambient celebration melody if audio isn't active
+            if (!isAudioPlaying) {
+                toggleAudio();
+            }
+        }
+
+        /* ----------------------------------------------------
+         * Audio Synthesizer (No external MP3 required!)
+         * Soft, warm birthday tune synthesis via Web Audio API
+         * ---------------------------------------------------- */
+        function toggleAudio() {
+            const icon = document.getElementById('soundIcon');
+            const text = document.getElementById('soundText');
+
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+
+            if (isAudioPlaying) {
+                isAudioPlaying = false;
+                icon.className = "fa-solid fa-volume-xmark";
+                text.innerText = "Music Off";
+            } else {
+                isAudioPlaying = true;
+                icon.className = "fa-solid fa-volume-high text-gold-400";
+                text.innerText = "Playing Tune";
+                playBirthdayMelody();
+            }
+        }
+
+        function playTone(freq, duration, delay = 0, type = 'sine') {
+            if (!audioContext || !isAudioPlaying) return;
+
+            setTimeout(() => {
+                if (!isAudioPlaying) return;
+                try {
+                    const osc = audioContext.createOscillator();
+                    const gain = audioContext.createGain();
+
+                    osc.type = type;
+                    osc.frequency.setValueAtTime(freq, audioContext.currentTime);
+
+                    gain.gain.setValueAtTime(0.001, audioContext.currentTime);
+                    gain.gain.exponentialRampToValueAtTime(0.15, audioContext.currentTime + 0.05);
+                    gain.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + duration - 0.05);
+
+                    osc.connect(gain);
+                    gain.connect(audioContext.destination);
+
+                    osc.start();
+                    osc.stop(audioContext.currentTime + duration);
+                } catch(e) {}
+            }, delay);
+        }
+
+        function playChimeSound() {
+            if (!audioContext) audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const notes = [523.25, 659.25, 783.99, 1046.50, 1318.51];
+            notes.forEach((freq, index) => {
+                playTone(freq, 0.6, index * 100, 'triangle');
+            });
+        }
+
+        function playBirthdayMelody() {
+            if (!isAudioPlaying) return;
+
+            // Simplified Happy Birthday Note Frequencies (C4, D4, etc.)
+            const melody = [
+                { f: 261.63, d: 300 }, { f: 261.63, d: 300 }, { f: 293.66, d: 600 }, { f: 261.63, d: 600 },
+                { f: 349.23, d: 600 }, { f: 329.63, d: 1200 },
+                { f: 261.63, d: 300 }, { f: 261.63, d: 300 }, { f: 293.66, d: 600 }, { f: 261.63, d: 600 },
+                { f: 392.00, d: 600 }, { f: 349.23, d: 1200 },
+                { f: 261.63, d: 300 }, { f: 261.63, d: 300 }, { f: 523.25, d: 600 }, { f: 440.00, d: 600 },
+                { f: 349.23, d: 600 }, { f: 329.63, d: 600 }, { f: 293.66, d: 600 },
+                { f: 466.16, d: 300 }, { f: 466.16, d: 300 }, { f: 440.00, d: 600 }, { f: 349.23, d: 600 },
+                { f: 392.00, d: 600 }, { f: 349.23, d: 1200 }
+            ];
+
+            let currentTime = 0;
+            melody.forEach(note => {
+                playTone(note.f, note.d / 1000, currentTime);
+                currentTime += note.d + 50;
+            });
+
+            // Loop melody if toggled on
+            setTimeout(() => {
+                if (isAudioPlaying) playBirthdayMelody();
+            }, currentTime + 1000);
+        }
+
+        /* ----------------------------------------------------
+         * Interactive Wishes Generator
+         * ---------------------------------------------------- */
+        const wishes = [
+            `"May your year ahead be blessed with pristine health, abundant happiness, and total peace of mind!"`,
+            `"Thank you for being my strength when I was weak, and my guidance when I was lost. Happy Birthday, Uncle!"`,
+            `"Wishing a golden year to the man whose wisdom turned my dreams into reality."`,
+            `"May God grant you endless happiness, longevity, and good health for all the selfless love you have given!"`,
+            `"To the world you might be one person, but to me, you are the entire world of guidance and hope."`
+        ];
+        let wishIndex = 0;
+
+        function generateWish() {
+            wishIndex = (wishIndex + 1) % wishes.length;
+            const wishElement = document.getElementById('wishText');
+            wishElement.style.opacity = '0';
+            setTimeout(() => {
+                wishElement.innerText = wishes[wishIndex];
+                wishElement.style.opacity = '1';
+            }, 200);
+        }
+
+        /* ----------------------------------------------------
+         * Lightweight Custom Particle & Firework Canvas Engine
+         * ---------------------------------------------------- */
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor(x, y, isBurst = false) {
+                this.x = x || Math.random() * canvas.width;
+                this.y = y || (isBurst ? y : canvas.height + 10);
+                
+                const speed = isBurst ? Math.random() * 6 + 2 : Math.random() * 1.5 + 0.5;
+                const angle = isBurst ? Math.random() * Math.PI * 2 : -Math.PI / 2 + (Math.random() - 0.5) * 0.5;
+
+                this.vx = Math.cos(angle) * speed;
+                this.vy = Math.sin(angle) * speed;
+                
+                this.size = isBurst ? Math.random() * 4 + 2 : Math.random() * 3 + 1;
+                this.alpha = 1;
+                this.decay = isBurst ? Math.random() * 0.02 + 0.01 : Math.random() * 0.005 + 0.002;
+                
+                const colors = ['#FACC15', '#FFE885', '#CA8A04', '#F97316', '#E11D48', '#A855F7'];
+                this.color = colors[Math.floor(Math.random() * colors.length)];
+                this.isBurst = isBurst;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+
+                if (this.isBurst) {
+                    this.vy += 0.08; // Gravity for fireworks
+                }
+
+                this.alpha -= this.decay;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = Math.max(0, this.alpha);
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        // Create initial ambient background floating stars
+        for (let i = 0; i < 40; i++) {
+            const p = new Particle();
+            p.y = Math.random() * canvas.height;
+            particles.push(p);
+        }
+
+        function triggerCelebrationParticles() {
+            const centerX = canvas.width / 2;
+            const centerY = canvas.height * 0.4;
+            
+            for (let i = 0; i < 120; i++) {
+                particles.push(new Particle(centerX, centerY, true));
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Add occasional ambient rising spark
+            if (Math.random() < 0.2) {
+                particles.push(new Particle());
+            }
+
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const p = particles[i];
+                p.update();
+                p.draw();
+
+                if (p.alpha <= 0) {
+                    particles.splice(i, 1);
+                }
+            }
+
+            requestAnimationFrame(animateParticles);
+        }
+
+        window.onload = function() {
+            animateParticles();
+        };
+    </script>
+</body>
+</html>
+```
